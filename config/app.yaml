@@ -1,0 +1,40 @@
+server:
+  env: "debug"
+  address: "127.0.0.1"
+  port: 8080
+  gracefulShutdownPeriod: 30
+  rateLimits:
+    fillInterval: 2
+    cap: 100
+    quantum: 100
+
+storage:
+  accessKey: "OalYRUloa0DcJlhRa_IJeJAQpMlIbK2cfbi39PiB"
+  secretKey: "vWPWpMwWXCrDSj3OVm8J1sjymM3gux1hecqhua7W"
+  bucket: "ginblogtest"
+  storageurl: "http://tom.niux.plus"
+
+db:
+  port: 3306
+  host: "192.168.10.168"
+  name: "testuser"
+  user: "root"
+  password: "123456"
+
+redis:
+  enable: true
+  port: 6379
+  host: "192.168.10.168"
+  password: "123456"
+
+logger:
+  level: "DEBUG"
+  filename: "./test.log"
+  maxsize: 2
+  maxage: 30
+  maxbackups: 5
+
+oauth:
+  github:
+    clientId: "85db232fde2c9320ece7" # set your client id
+    clientSecret: "" # set your client secret
