@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"app/database"
 	"app/model"
 	"errors"
 	"gorm.io/gorm"
@@ -11,7 +10,7 @@ type categoryRepository struct {
 	db *gorm.DB
 }
 
-func NewCategoryRepository(db *gorm.DB, rdb *database.RedisDB) CategoryRepository {
+func NewCategoryRepository(db *gorm.DB) CategoryRepository {
 	return &categoryRepository{
 		db: db,
 	}

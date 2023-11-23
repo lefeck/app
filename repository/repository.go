@@ -8,12 +8,16 @@ import (
 
 func NewRepository(db *gorm.DB, rdb *database.RedisDB) Repository {
 	r := &repository{
-		user: NewUserRepository(db, rdb),
-		post: NewPostRepository(db, rdb),
-		db:   db,
-		rdb:  rdb,
+		user:     NewUserRepository(db, rdb),
+		article:  NewArticleRepository(db),
+		tag:      NewTagRepository(db),
+		comment:  NewCommentRepository(db),
+		like:     NewLikeRepository(db),
+		category: NewCategoryRepository(db),
+		db:       db,
+		rdb:      rdb,
 	}
-	r.migrants = getMigrants(r.user, r.post)
+	r.migrants = getMigrants(r.user, r.article, r.article, r.like, r.category, r.tag)
 	return r
 }
 
@@ -43,9 +47,13 @@ func (r *repository) Migrant() error {
 }
 
 type repository struct {
-	user UserRepository
+	user     UserRepository
+	article  ArticleRepository
+	category CategoryRepository
+	comment  CommentRepository
+	tag      TagRepository
+	like     LikeRepository
 	//group    GroupRepository
-	post PostRepository
 	//rbac     RBACRepository
 	db       *gorm.DB
 	rdb      *database.RedisDB
@@ -60,8 +68,24 @@ func (r *repository) User() UserRepository {
 	return r.user
 }
 
-func (r *repository) Post() PostRepository {
-	return r.post
+func (r *repository) Article() ArticleRepository {
+	return r.article
+}
+
+func (r *repository) Comment() CommentRepository {
+	return r.comment
+}
+
+func (r *repository) Category() CategoryRepository {
+	return r.category
+}
+
+func (r *repository) Like() LikeRepository {
+	return r.like
+}
+
+func (r *repository) Tag() TagRepository {
+	return r.tag
 }
 
 func (r *repository) Close() error {
