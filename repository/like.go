@@ -1,34 +1,31 @@
 package repository
 
 import (
-	"app/database"
 	"app/model"
 	"gorm.io/gorm"
 )
 
 type likeRepository struct {
-	db  *gorm.DB
-	rdb *database.RedisDB
+	db *gorm.DB
 }
 
-func NewLikeRepository(db *gorm.DB, rdb *database.RedisDB) LikeRepository {
+func NewLikeRepository(db *gorm.DB) LikeRepository {
 	return &likeRepository{
-		db:  db,
-		rdb: rdb,
+		db: db,
 	}
 }
 
-func (l *likeRepository) AddLike(aid, uid uint) error {
+func (l *likeRepository) Add(aid, uid uint) error {
 	like := &model.Like{ArticleID: aid, UserID: uid}
 	return l.db.Create(like).Error
 }
 
-func (l *likeRepository) DelLike(aid, uid uint) error {
+func (l *likeRepository) Delete(aid, uid uint) error {
 	like := &model.Like{}
 	return l.db.Where("article_id = ? and user_id = ?", aid, uid).Delete(like).Error
 }
 
-func (l *likeRepository) GetLike(aid, uid uint) (bool, error) {
+func (l *likeRepository) Get(aid, uid uint) (bool, error) {
 	var count int64
 	like := &model.Like{}
 	if err := l.db.Model(like).Where("article_id = ? and user_id = ?", aid, uid).Count(&count).Error; err != nil {

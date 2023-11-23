@@ -1,44 +1,43 @@
 package repository
 
 import (
-	"app/database"
 	"app/model"
 	"gorm.io/gorm"
 )
 
 type tagRepository struct {
-	db  *gorm.DB
-	rdb *database.RedisDB
+	db *gorm.DB
 }
 
-func (t *tagRepository) Delete(tid uint) error {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (t *tagRepository) Create(tag string) (*model.Tag, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (t *tagRepository) List() ([]model.Tag, error) {
-
-}
-
-func (t *tagRepository) Update(tag *model.Tag) (*model.Tag, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func NewTagRepository(db *gorm.DB, rdb *database.RedisDB) TagRepository {
+func NewTagRepository(db *gorm.DB) TagRepository {
 	return &tagRepository{
-		db:  db,
-		rdb: rdb,
+		db: db,
 	}
 }
 
-func (p *tagRepository) GetTagsByArticle(article *model.Article) ([]model.Tag, error) {
+func (t *tagRepository) GetTagsByArticle(article *model.Article) ([]model.Tag, error) {
 	tags := make([]model.Tag, 0)
-	err := p.db.Model(article).Association(model.TagAssociation).Find(&tags)
+	err := t.db.Model(article).Association(model.TagsAssociation).Find(&tags)
 	return tags, err
+}
+func (t *tagRepository) Delete(tid string) error {
+	return t.db.Delete(&model.Tag{}, tid).Error
+}
+
+func (t *tagRepository) Add(tag *model.Tag) (*model.Tag, error) {
+	if err := t.db.Create(tag).Error; err != nil {
+		return nil, err
+	}
+	return tag, nil
+}
+
+func (t *tagRepository) List() ([]model.Tag, error) {
+	panic("err")
+}
+
+func (t *tagRepository) Update(tag *model.Tag) (*model.Tag, error) {
+	if err := t.db.Updates(tag).Error; err != nil {
+		return nil, err
+	}
+	return tag, nil
 }

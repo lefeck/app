@@ -37,7 +37,7 @@ func (a *articleService) Get(user *model.User, id string) (*model.Article, error
 	if err != nil {
 		return nil, err
 	}
-	article.UserLiked, _ = a.likeRepository.GetLike(uint(aid), user.ID)
+	article.UserLiked, _ = a.likeRepository.Get(uint(aid), user.ID)
 
 	return article, nil
 }

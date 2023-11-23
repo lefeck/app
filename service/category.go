@@ -2,13 +2,12 @@ package service
 
 import "app/repository"
 
-type articleService struct {
-	articleRepository repository.ArticleRepository
-	likeRepository    repository.LikeRepository
+type categoryService struct {
+	categoryRepository repository.CategoryRepository
 }
 
-func NewArticleService(articleRepository repository.ArticleRepository) ArticleService {
-	return &articleService{
-		articleRepository: articleRepository,
+func NewCategoryService(categoryRepository repository.CategoryRepository) CategoryService {
+	return &categoryService{
+		categoryRepository: categoryRepository,
 	}
 }

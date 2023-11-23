@@ -19,8 +19,8 @@ package model
 
 const (
 	CreatorAssociation    = "Creator"
-	ArticleAssociation    = "Articles"
-	TagAssociation        = "Tags"
+	ArticlesAssociation   = "Articles"
+	TagsAssociation       = "Tags"
 	CategoriesAssociation = "Categories"
 	CommentsAssociation   = "Comments"
 )

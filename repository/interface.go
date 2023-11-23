@@ -9,13 +9,17 @@ import (
 // 工厂模式接口
 type Repository interface {
 	User() UserRepository
-	//Group() GroupRepository
-	Post() PostRepository
-	//RBAC() RBACRepository
+	Article() ArticleRepository
+	Category() CategoryRepository
+	Comment() CommentRepository
+	Tag() TagRepository
+	Like() LikeRepository
 	Close() error
 	Ping(ctx context.Context) error
 	//Init() error
 	Migrant
+	//Group() GroupRepository
+	//RBAC() RBACRepository
 }
 
 type Migrant interface {
@@ -36,24 +40,15 @@ type UserRepository interface {
 	Migrate() error
 }
 
-// post 接口
-type PostRepository interface {
-	GetPostByID(uint) (*model.Post, error)
-	GetPostByName(string) (*model.Post, error)
-	List() ([]model.Post, error)
-	Create(*model.User, *model.Post) (*model.Post, error)
-	Update(*model.Post) (*model.Post, error)
+// Article 接口
+type ArticleRepository interface {
+	GetArticleByID(uint) (*model.Article, error)
+	GetArticleByName(string) (*model.Article, error)
+	List() ([]model.Article, error)
+	Create(*model.User, *model.Article) (*model.Article, error)
+	Update(*model.Article) (*model.Article, error)
 	Delete(uint) error
-	GetTags(*model.Post) ([]model.Tag, error)
-	GetCategories(*model.Post) ([]model.Category, error)
 	IncView(id uint) error
-	AddLike(pid, uid uint) error
-	DelLike(pid, uid uint) error
-	GetLike(pid, uid uint) (bool, error)
-	GetLikeByUser(uid uint) ([]model.Like, error)
-	AddComment(comment *model.Comment) (*model.Comment, error)
-	DelComment(id string) error
-	ListComment(pid string) ([]model.Comment, error)
 	Migrate() error
 }
 
@@ -70,4 +65,31 @@ type RBACRepository interface {
 	Delete(id uint) error
 	DeleteResource(id uint) error
 	Migrate() error
+}
+
+type CategoryRepository interface {
+	GetCategoriesByArticle(*model.Article) ([]model.Category, error)
+	Delete(cid string) error
+	Create(category *model.Category) (*model.Category, error)
+	Update(category *model.Category) (*model.Category, error)
+}
+
+type TagRepository interface {
+	GetTagsByArticle(article *model.Article) ([]model.Tag, error)
+	Add(tag *model.Tag) (*model.Tag, error)
+	Delete(id string) error
+	List() ([]model.Tag, error)
+}
+
+type CommentRepository interface {
+	Add(comment *model.Comment) (*model.Comment, error)
+	Delete(id string) error
+	List(aid string) ([]model.Comment, error)
+}
+
+type LikeRepository interface {
+	Add(aid, uid uint) error
+	Delete(aid, uid uint) error
+	Get(aid, uid uint) (bool, error)
+	GetLikeByUser(uid uint) ([]model.Like, error)
 }

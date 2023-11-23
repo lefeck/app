@@ -45,5 +45,5 @@ func (t *tagService) Update(tag *model.Tag, id string) (*model.Tag, error) {
 
 	tag.ID = uint(tid)
 
-	return t.tagRepository.Update(tag)
+	return t.tagRepository.
 }
