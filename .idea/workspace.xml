@@ -6,20 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctest/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/article.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/post.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/category.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/comment.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/like.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/like.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/post.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/tag.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/article.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/comment.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/interface.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/like.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/like.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/post.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/service/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/tag.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +130,10 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="v1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -16,7 +16,7 @@ func NewCommentService(commentRepository repository.CommentRepository) CommentSe
 	}
 }
 
-func (c *commentService) AddComment(comment *model.Comment, id string, user *model.User) (*model.Comment, error) {
+func (c *commentService) Add(comment *model.Comment, id string, user *model.User) (*model.Comment, error) {
 	cid, err := strconv.Atoi(id)
 	if err != nil {
 		return nil, err
@@ -25,13 +25,13 @@ func (c *commentService) AddComment(comment *model.Comment, id string, user *mod
 	comment.ID = uint(cid)
 	comment.UserID = user.ID
 
-	return c.commentRepository.AddComment(comment)
+	return c.commentRepository.Add(comment)
 }
 
-func (c *commentService) DelComment(id string) error {
-	return c.commentRepository.DelComment(id)
+func (c *commentService) Delete(id string) error {
+	return c.commentRepository.Delete(id)
 }
 
-func (c *commentService) ListComment(aid string) ([]model.Comment, error) {
-	return c.commentRepository.ListComment(aid)
+func (c *commentService) List(aid string) ([]model.Comment, error) {
+	return c.commentRepository.List(aid)
 }

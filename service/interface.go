@@ -45,14 +45,26 @@ type ArticleService interface {
 }
 
 type LikeService interface {
+	Create(user *model.User, pid string) error
+	Delete(user *model.User, pid string) error
 }
 
 type TagService interface {
 	GetTagsByArticle(id string) ([]model.Tag, error)
 	Create(tag string) (*model.Tag, error)
-	Delete(tid uint)
-	Update(tag *model.Tag, id string) (*model.Tag, error)
+	Delete(id string) error
+	//Update(tag *model.Tag, id string) (*model.Tag, error)
 }
 
 type CategoryService interface {
+	GetCategories(id string) ([]model.Category, error)
+	Create(category *model.Category) (*model.Category, error)
+	Delete(id string) error
+	Update(id string, category *model.Category) (*model.Category, error)
+}
+
+type CommentService interface {
+	Add(comment *model.Comment, id string, user *model.User) (*model.Comment, error)
+	Delete(id string) error
+	List(aid string) ([]model.Comment, error)
 }

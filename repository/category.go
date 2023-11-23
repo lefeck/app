@@ -8,18 +8,16 @@ import (
 )
 
 type categoryRepository struct {
-	db  *gorm.DB
-	rdb *database.RedisDB
+	db *gorm.DB
 }
 
 func NewCategoryRepository(db *gorm.DB, rdb *database.RedisDB) CategoryRepository {
 	return &categoryRepository{
-		db:  db,
-		rdb: rdb,
+		db: db,
 	}
 }
 
-func (c *categoryRepository) GetCategories(article *model.Article) ([]model.Category, error) {
+func (c *categoryRepository) GetCategoriesByArticle(article *model.Article) ([]model.Category, error) {
 	categories := make([]model.Category, 0)
 	err := c.db.Model(article).Association(model.CategoriesAssociation).Find(&categories)
 	return categories, err

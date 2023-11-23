@@ -69,15 +69,15 @@ type RBACRepository interface {
 
 type CategoryRepository interface {
 	GetCategoriesByArticle(*model.Article) ([]model.Category, error)
-	Delete(cid string) error
+	Delete(cid uint) error
 	Create(category *model.Category) (*model.Category, error)
 	Update(category *model.Category) (*model.Category, error)
 }
 
 type TagRepository interface {
 	GetTagsByArticle(article *model.Article) ([]model.Tag, error)
-	Add(tag *model.Tag) (*model.Tag, error)
-	Delete(id string) error
+	Create(tag *model.Tag) (*model.Tag, error)
+	Delete(id uint) error
 	List() ([]model.Tag, error)
 }
 

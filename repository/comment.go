@@ -15,12 +15,12 @@ func NewCommentRepository(db *gorm.DB) CommentRepository {
 	}
 }
 
-func (c commentRepository) Add(comment *model.Comment) (*model.Comment, error) {
+func (c *commentRepository) Add(comment *model.Comment) (*model.Comment, error) {
 	err := c.db.Create(comment).Error
 	return comment, err
 }
 
-func (c commentRepository) Delete(id string) error {
+func (c *commentRepository) Delete(id string) error {
 	comment := &model.Comment{}
 	if err := c.db.Delete(comment, id).Error; err != nil {
 		return err
@@ -28,7 +28,7 @@ func (c commentRepository) Delete(id string) error {
 	return nil
 }
 
-func (c commentRepository) List(aid string) ([]model.Comment, error) {
+func (c *commentRepository) List(aid string) ([]model.Comment, error) {
 	comments := make([]model.Comment, 0)
 	err := c.db.Where("article_id = ?", aid).Find(comments).Error
 	return comments, err

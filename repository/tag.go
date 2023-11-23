@@ -20,11 +20,11 @@ func (t *tagRepository) GetTagsByArticle(article *model.Article) ([]model.Tag, e
 	err := t.db.Model(article).Association(model.TagsAssociation).Find(&tags)
 	return tags, err
 }
-func (t *tagRepository) Delete(tid string) error {
+func (t *tagRepository) Delete(tid uint) error {
 	return t.db.Delete(&model.Tag{}, tid).Error
 }
 
-func (t *tagRepository) Add(tag *model.Tag) (*model.Tag, error) {
+func (t *tagRepository) Create(tag *model.Tag) (*model.Tag, error) {
 	if err := t.db.Create(tag).Error; err != nil {
 		return nil, err
 	}
