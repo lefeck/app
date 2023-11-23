@@ -4,7 +4,7 @@ import "time"
 
 // 评论
 /*
-评论关联用户,文章,评论上下文
+评论关联用户,帖子,评论上下文
 */
 type Comment struct {
 	ID        uint      `json:"id" gorm:"autoIncrement;primaryKey"`

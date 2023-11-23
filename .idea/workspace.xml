@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="变更">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <changelist_data name="johnny" email="jw6759792@gmail.com" />
+      <change beforePath="$PROJECT_DIR$/test/demo.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo4.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/micro.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/onetomany.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/onetomany.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,20 +32,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "lefeck"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="ed0ba3b1-605b-4339-afee-54477e88338a" />
-        <option name="url" value="https://github.com/lefeck/app.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
@@ -185,7 +175,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="init commit" />
     <MESSAGE value="变更" />
     <option name="LAST_COMMIT_MESSAGE" value="变更" />
   </component>

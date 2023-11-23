@@ -18,7 +18,7 @@ type Customer struct {
 type CreditCard struct {
 	gorm.Model
 	Number string `json:"number"  gorm:"type:varchar(50);uniqueIndex:name_auth_type;not null"`
-	CustomerID uint
+	UserID uint
 }
 */
 

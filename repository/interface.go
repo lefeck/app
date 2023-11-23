@@ -9,16 +9,12 @@ import (
 // 工厂模式接口
 type Repository interface {
 	User() UserRepository
-	Article() ArticleRepository
-	Category() CategoryRepository
-	Comment() CommentRepository
-	Like() likeRepository
-	Tag() TagRepository
+	//Group() GroupRepository
+	Post() PostRepository
+	//RBAC() RBACRepository
 	Close() error
 	Ping(ctx context.Context) error
 	//Init() error
-	//Group() GroupRepository
-	//RBAC() RBACRepository
 	Migrant
 }
 
@@ -40,45 +36,25 @@ type UserRepository interface {
 	Migrate() error
 }
 
-// article 接口
-type ArticleRepository interface {
-	GetArticleByID(uint) (*model.Article, error)
-	GetArticleByName(string) (*model.Article, error)
-	List() ([]model.Article, error)
-	Create(*model.User, *model.Article) (*model.Article, error)
-	Update(*model.Article) (*model.Article, error)
+// post 接口
+type PostRepository interface {
+	GetPostByID(uint) (*model.Post, error)
+	GetPostByName(string) (*model.Post, error)
+	List() ([]model.Post, error)
+	Create(*model.User, *model.Post) (*model.Post, error)
+	Update(*model.Post) (*model.Post, error)
 	Delete(uint) error
+	GetTags(*model.Post) ([]model.Tag, error)
+	GetCategories(*model.Post) ([]model.Category, error)
 	IncView(id uint) error
-	Migrate() error
-}
-
-type CategoryRepository interface {
-	GetCategories(article *model.Article) ([]model.Category, error)
-	Create(*model.Category) (*model.Category, error)
-	Delete(cid uint) error
-	Update(*model.Category) (*model.Category, error)
-	List() ([]model.Category, error)
-}
-
-type LikeRepository interface {
-	AddLike(aid, uid uint) error
-	DelLike(aid, uid uint) error
-	GetLike(aid, uid uint) (bool, error)
+	AddLike(pid, uid uint) error
+	DelLike(pid, uid uint) error
+	GetLike(pid, uid uint) (bool, error)
 	GetLikeByUser(uid uint) ([]model.Like, error)
-}
-
-type CommentRepository interface {
 	AddComment(comment *model.Comment) (*model.Comment, error)
 	DelComment(id string) error
-	ListComment(aid string) ([]model.Comment, error)
-}
-
-type TagRepository interface {
-	GetTagsByArticle(article *model.Article) ([]model.Tag, error)
-	Delete(tid uint) error
-	Create(tag string) (*model.Tag, error)
-	List() ([]model.Tag, error)
-	Update(tag *model.Tag) (*model.Tag, error)
+	ListComment(pid string) ([]model.Comment, error)
+	Migrate() error
 }
 
 type RBACRepository interface {

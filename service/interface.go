@@ -35,24 +35,3 @@ type UserService interface {
 	Login(param request.Login) (*model.User, error)
 	Export(data *[]model.User, headerName []string, filename string, c *gin.Context) error
 }
-
-type ArticleService interface {
-	List() ([]model.Article, error)
-	Create(*model.User, *model.Article) (*model.Article, error)
-	Get(user *model.User, id string) (*model.Article, error)
-	Update(id string, post *model.Article) (*model.Article, error)
-	Delete(id string) error
-}
-type CommentService interface {
-	AddComment(comment *model.Comment, id string, user *model.User) (*model.Comment, error)
-	DelComment(id string) error
-	ListComment(aid string) ([]model.Comment, error)
-}
-
-type TagService interface {
-	GetTagsByArticle(id string) ([]model.Tag, error)
-	Delete(tid uint) error
-	Create(tag string) (*model.Tag, error)
-	List() ([]model.Tag, error)
-	Update(tag *model.Tag) (*model.Tag, error)
-}
