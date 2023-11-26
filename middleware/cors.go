@@ -1,10 +1,13 @@
 package middleware
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
+// 第一种方式:
 // 主要是给OPTION组件做返回的
 func CORSMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -20,4 +23,25 @@ func CORSMiddleware() gin.HandlerFunc {
 			c.AbortWithStatus(http.StatusNoContent)
 		}
 	}
+}
+
+// 第二种方式:
+func CORSMiddlewares() gin.HandlerFunc {
+	return cors.New(cors.Config{
+		AllowOriginFunc: func(origin string) bool {
+			return true
+		},
+		AllowMethods:     []string{"POST, GET, OPTIONS, DELETE, PATCH, PUT"},
+		AllowHeaders:     []string{"Origin", "Authorization", "Content-Length", "Content-Type"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+		AllowWebSockets:  true,
+	})
+}
+
+func Addheader() cors.Config {
+	cors := cors.Config{}
+	cors.AddAllowHeaders("AccessToken", "X-CSRF-Token", "Token", "x-token")
+	return cors
 }

@@ -30,7 +30,7 @@ type Article struct {
 	ID         uint       `json:"aid" gorm:"autoIncrement;primaryKey"`
 	Title      string     `json:"title" gorm:"type:varchar(100);not null;unique"`
 	Content    string     `json:"content" gorm:"type:text;not null"`
-	Cover      string     `gorm:"not null" json:"cover"`
+	Cover      string     `json:"cover" gorm:"not null"`
 	CreatorID  uint       `json:"creatorId"`
 	Creator    User       `json:"creator" gorm:"foreignKey:CreatorID"`
 	Tags       []Tag      `json:"tags"  gorm:"many2many:tag_articles"`
@@ -42,6 +42,6 @@ type Article struct {
 	// 点赞数
 	Likes     uint `json:"likes" gorm:"-"`
 	UserLiked bool `json:"userLiked" gorm:"-"`
-	Origin    int  `gorm:"not null" json:"origin"` //是否原创 1原创 0转载
-	State     int  `gorm:"default:0" json:"-"`     //0正常发布 2并未发布(草稿箱)
+	Origin    int  `json:"origin" gorm:"not null"` //是否原创 1原创 0转载
+	State     int  `json:"-" gorm:"default:0"`     //0正常发布 2并未发布(草稿箱)
 }

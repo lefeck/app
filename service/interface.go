@@ -53,7 +53,7 @@ type TagService interface {
 	GetTagsByArticle(id string) ([]model.Tag, error)
 	Create(tag string) (*model.Tag, error)
 	Delete(id string) error
-	//Update(tag *model.Tag, id string) (*model.Tag, error)
+	Update(tag *model.Tag, id string) (*model.Tag, error)
 }
 
 type CategoryService interface {

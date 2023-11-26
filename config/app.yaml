@@ -34,7 +34,7 @@ logger:
   maxage: 30
   maxbackups: 5
 
-oauth:
-  github:
-    clientId: "85db232fde2c9320ece7" # set your client id
-    clientSecret: "" # set your client secret
+#oauth:
+#  github:
+#    clientId: "85db232fde2c9320ece7" # set your client id
+#    clientSecret: "" # set your client secret

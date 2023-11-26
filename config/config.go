@@ -1,21 +1,19 @@
 package config
 
 import (
-	"flag"
 	"gopkg.in/yaml.v2"
 	"os"
 	"time"
 )
 
-var appConfig = flag.String("config", "config/app.yaml", "application config path")
+//var appConfig = flag.String("config", "config/app.yaml", "application config path")
 
 type Config struct {
-	Server      ServerConfig           `yaml:"server"`
-	DB          DBConfig               `yaml:"db"`
-	Redis       RedisConfig            `yaml:"redis"`
-	Storage     StorageConfig          `yaml:"storage"`
-	Logger      LoggerConfig           `yaml:"logger"`
-	OAuthConfig map[string]OAuthConfig `yaml:"oauth"`
+	Server  ServerConfig  `yaml:"server"`
+	DB      DBConfig      `yaml:"db"`
+	Redis   RedisConfig   `yaml:"redis"`
+	Storage StorageConfig `yaml:"storage"`
+	Logger  LoggerConfig  `yaml:"logger"`
 }
 
 type ServerConfig struct {
@@ -24,6 +22,7 @@ type ServerConfig struct {
 	Port                   int               `yaml:"port"`
 	GracefulShutdownPeriod int               `yaml:"gracefulShutdownPeriod"`
 	RateLimitsConfigs      RateLimitsConfigs `yaml:"rateLimits"`
+	JWTSecret              string            `yaml:"jwtSecret"`
 }
 
 type RateLimitsConfigs struct {
@@ -63,15 +62,9 @@ type LoggerConfig struct {
 	MaxBackups int    `yaml:"maxbackups" json:"max_backups"`
 }
 
-type OAuthConfig struct {
-	AuthType     string `yaml:"authType"`
-	ClientId     string `yaml:"clientId"`
-	ClientSecret string `yaml:"clientSecret"`
-}
-
-func Parse() (*Config, error) {
+func Parse(appconfig string) (*Config, error) {
 	config := &Config{}
-	file, err := os.Open(*appConfig)
+	file, err := os.Open(appconfig)
 	if err != nil {
 		return nil, err
 	}

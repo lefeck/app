@@ -6,6 +6,20 @@ import (
 	"gorm.io/gorm"
 )
 
+type repository struct {
+	user     UserRepository
+	article  ArticleRepository
+	category CategoryRepository
+	comment  CommentRepository
+	tag      TagRepository
+	like     LikeRepository
+	//group    GroupRepository
+	//rbac     RBACRepository
+	db       *gorm.DB
+	rdb      *database.RedisDB
+	migrants []Migranter
+}
+
 func NewRepository(db *gorm.DB, rdb *database.RedisDB) Repository {
 	r := &repository{
 		user:     NewUserRepository(db, rdb),
@@ -44,20 +58,6 @@ func (r *repository) Migrant() error {
 		}
 	}
 	return nil
-}
-
-type repository struct {
-	user     UserRepository
-	article  ArticleRepository
-	category CategoryRepository
-	comment  CommentRepository
-	tag      TagRepository
-	like     LikeRepository
-	//group    GroupRepository
-	//rbac     RBACRepository
-	db       *gorm.DB
-	rdb      *database.RedisDB
-	migrants []Migranter
 }
 
 func (r *repository) Migrate() error {

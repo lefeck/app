@@ -21,24 +21,23 @@ type AuthController struct {
 	oauthManger *oauth.OAuthManager
 }
 
-func NewAuthController(userService service.UserService, jwtService *authentication.JWTService, oauthManger *oauth.OAuthManager) *AuthController {
+func NewAuthController(userService service.UserService, jwtService *authentication.JWTService) *AuthController {
 	return &AuthController{
 		userService: userService,
 		jwtService:  jwtService,
-		oauthManger: oauthManger,
 	}
 }
 
-func (ac *AuthController) Login(c *gin.Context) {
+func (auth *AuthController) Login(c *gin.Context) {
 	var loginUser request.Login
 	if err := c.ShouldBindJSON(&loginUser); err != nil {
 		common.ResponseFailed(c, http.StatusBadRequest, nil)
 		return
 	}
-	if user, err := ac.userService.Login(loginUser); err != nil {
+	if user, err := auth.userService.Login(loginUser); err != nil {
 		common.ResponseFailed(c, http.StatusUnauthorized, err)
 	} else {
-		tokenString, err := ac.jwtService.GenerateToken(user)
+		tokenString, err := auth.jwtService.GenerateToken(user)
 		if err != nil {
 			common.ResponseFailed(c, http.StatusInternalServerError, errors.New("生成token失败"))
 			return
@@ -53,7 +52,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 }
 
 // 注册和创建新用户一样，拿过来直接用
-func (ac *AuthController) Register(c *gin.Context) {
+func (auth *AuthController) Register(c *gin.Context) {
 	var registerUser forms.CreateUserForm
 	if err := c.ShouldBindJSON(&registerUser); err != nil {
 		// 获取validator.ValidationErrors类型的errors
@@ -71,7 +70,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 		})
 		return
 	}
-	user, err := ac.userService.Create(registerUser.GetUser())
+	user, err := auth.userService.Create(registerUser.GetUser())
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -80,10 +79,19 @@ func (ac *AuthController) Register(c *gin.Context) {
 	c.JSON(http.StatusOK, user)
 }
 
-func (ac *AuthController) Logout(c *gin.Context) {
-	if err := ac.jwtService.JoinBlackList(c.Keys["token"].(*jwt.Token)); err != nil {
+func (auth *AuthController) Logout(c *gin.Context) {
+	if err := auth.jwtService.JoinBlackList(c.Keys["token"].(*jwt.Token)); err != nil {
 		c.JSON(http.StatusForbidden, "login out failed")
 		return
 	}
-	c.JSON(http.StatusOK, nil)
+	common.ResponseSuccess(c, nil)
+}
+func (auth *AuthController) RegisterRoute(api *gin.RouterGroup) {
+	api.POST("/auth/token", auth.Login)
+	api.DELETE("/auth/token", auth.Logout)
+	api.POST("/auth/user", auth.Register)
+}
+
+func (auth *AuthController) Name() string {
+	return "Authentication"
 }

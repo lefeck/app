@@ -79,6 +79,7 @@ type TagRepository interface {
 	Create(tag *model.Tag) (*model.Tag, error)
 	Delete(id uint) error
 	List() ([]model.Tag, error)
+	Update(tag *model.Tag) (*model.Tag, error)
 }
 
 type CommentRepository interface {

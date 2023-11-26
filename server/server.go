@@ -1,6 +1,7 @@
 package server
 
 import (
+	"app/authentication"
 	"app/common"
 	"app/config"
 	"app/controller"
@@ -9,6 +10,7 @@ import (
 	"app/middleware"
 	"app/repository"
 	"app/service"
+	"app/utils/set"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -28,32 +30,22 @@ import (
 const Language = "zh"
 
 type Server struct {
-	engine         *gin.Engine
-	config         *config.Config
-	userController *controller.UserController
+	engine *gin.Engine
+	config *config.Config
 	//redis          *redis.Client
 	logger *logrus.Logger
 
-	authContoller *controller.AuthController
-	//containerController: containerController,
-	authMiddleware gin.HandlerFunc
+	//authContoller  *controller.AuthController
+	//authMiddleware gin.HandlerFunc
 
-	loggerMiddleware   gin.HandlerFunc
-	recoveryMiddleware gin.HandlerFunc
-	repository         repository.Repository
-
-	//casbinMiddleware gin.HandlerFunc
+	//loggerMiddleware   gin.HandlerFunc
+	//recoveryMiddleware gin.HandlerFunc
+	repository repository.Repository
 
 	controllers []controller.Controller
-
-	transContoller *controller.TransController
-
-	casbinController *controller.CasbinController
-
-	uploadController *controller.UploadController
 }
 
-func New(conf *config.Config) (*Server, error) {
+func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 
 	// rateLimit
 	rateLimitMiddleware := middleware.RateLimitMiddleware(&conf.Server.RateLimitsConfigs)
@@ -64,13 +56,13 @@ func New(conf *config.Config) (*Server, error) {
 		return nil, err
 	}
 
-	// redis
+	// initable redis
 	rdb, err := database.NewRedis(&conf.Redis)
 	if err != nil {
 		return nil, err
 	}
 
-	//new initable
+	//new initable repository
 	repository := repository.NewRepository(db, rdb)
 	if conf.DB.Migrate {
 		if err = repository.Migrate(); err != nil {
@@ -88,30 +80,37 @@ func New(conf *config.Config) (*Server, error) {
 	userService := service.NewUserService(repository.User())
 	userController := controller.NewUserController(userService)
 
-	jwtService := service.NewJWTService()
+	jwtService := authentication.NewJWTService(conf.Server.JWTSecret)
 	authContoller := controller.NewAuthController(userService, jwtService)
 
 	transContoller := controller.NewTransController()
 	transContoller.Trans(Language)
 
-	// casbin
-	//casbinRepository := repository.NewCasbinRepository()
-	//if err := casbinRepository.Migrate(); err != nil {
-	//	return nil, err
-	//}
-
-	//casbinService := service.NewCasbinService(casbinRepository)
-	//casbinController := controller.NewCasbinController(casbinService)
-
 	// upload file
-	uploadService := service.NewUploadService(&conf.Storage)
-	uploadController := controller.NewUploadController(uploadService)
+	//uploadService := service.NewUploadService(&conf.Storage)
+	//uploadController := controller.NewUploadController(uploadService)
 
-	//post
-	postService := service.NewPostService(repository.Post())
-	postController := controller.NewPostController(postService)
+	// article
+	articleService := service.NewArticleService(repository.Article())
+	articleController := controller.NewArticleController(articleService)
 
-	controllers := []controller.Controller{userController, postController}
+	//category
+	categoryService := service.NewCategoryService(repository.Category())
+	categoryController := controller.NewCategoryController(categoryService)
+
+	//tag
+	tagService := service.NewTagService(repository.Tag())
+	tagController := controller.NewTagController(tagService)
+
+	//comment
+	commentService := service.NewCommentService(repository.Comment())
+	commentController := controller.NewCommentController(commentService)
+
+	// like
+	likeService := service.NewLikeService(repository.Like())
+	likeController := controller.NewLikeController(likeService)
+
+	controllers := []controller.Controller{authContoller, userController, articleController, categoryController, tagController, commentController, likeController}
 
 	//logger
 	logs := service.NewLoggerService(&conf.Logger)
@@ -126,29 +125,22 @@ func New(conf *config.Config) (*Server, error) {
 		middleware.CORSMiddleware(),
 		middleware.LoggerMiddleWare(),
 		middleware.Recovery(),
-		//middleware.CasbinMiddleware(),
+		middleware.AuthenticationMiddleware(jwtService, repository.User()),
+		middleware.AuthorizationMiddleware(),
 	)
 
 	//e.LoadHTMLFiles("")
 
 	return &Server{
-		engine:           e,
-		config:           conf,
-		userController:   userController,
-		authContoller:    authContoller,
-		transContoller:   transContoller,
-		uploadController: uploadController,
-		authMiddleware:   middleware.AuthMiddleware(jwtService),
-
-		//casbinMiddleware: middleware.CasbinMiddleware(),
-
-		// logger
-		loggerMiddleware:   middleware.LoggerMiddleWare(),
-		recoveryMiddleware: middleware.Recovery(),
+		engine:      e,
+		config:      conf,
+		logger:      logger,
+		repository:  repository,
+		controllers: controllers,
 	}, nil
 }
 
-func (s *Server) Run() {
+func (s *Server) Run() error {
 	defer s.Close()
 	s.Routers()
 
@@ -172,9 +164,9 @@ func (s *Server) Run() {
 	defer cancel()
 
 	ch := <-sig
-	log.Fatalf("Receive signal: %s", ch)
+	s.logger.Infof("Receive signal: %s", ch)
 
-	server.Shutdown(ctx)
+	return server.Shutdown(ctx)
 }
 
 func (s *Server) Close() {
@@ -185,27 +177,18 @@ func (s *Server) Close() {
 
 func (s *Server) Routers() {
 	root := s.engine
-	//router.GET("/")
-
 	// register non-resource routers
 	root.GET("/", common.WrapFunc(s.getRoutes))
 	root.GET("/index", controller.Index)
 	root.GET("/healthz", common.WrapFunc(s.Ping))
 	root.GET("/version", common.WrapFunc(version.Get))
-	root.GET("/metrics", gin.WrapH(promhttp.Handler()))
+	//root.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	root.Any("/debug/pprof/*any", gin.WrapH(http.DefaultServeMux))
 
 	// swagger doc
 	if gin.Mode() != gin.ReleaseMode {
 		root.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	}
-	//active health check
-	//router.GET("/health", s.Health)
-	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
-	//
-	//router.POST("/api/auth/token", s.authContoller.Login)
-	////router.DELETE("/api/auth/token", s.authContoller.Logout)
-	//router.POST("/api/auth/user", s.authContoller.Register)
 
 	api := root.Group("/api/v1")
 	controllers := make([]string, 0, len(s.controllers))
@@ -213,23 +196,35 @@ func (s *Server) Routers() {
 		router.RegisterRoute(api)
 		controllers = append(controllers, router.Name())
 	}
-	//s.casbinMiddleware
-	//s.authMiddleware, s.logMiddleware, s.recoveryMiddleware
-	api.Use()
-	// user api
-	api.GET("/users", s.userController.List)
-	api.GET("/user/:id", s.userController.Get)
-	api.POST("/user", s.userController.Create)
-	api.DELETE("/user/:id", s.userController.Delete)
-	api.PUT("/user/:id", s.userController.Update)
-	//api.GET("/user/download", s.userController.ExportUserList)
+	logrus.Infof("server enabled controllers: %v", controllers)
+}
 
-	// upload api
-	api.POST("/upload", s.uploadController.Upload)
+func (s *Server) getRoutes() []string {
+	paths := set.NewString()
+	for _, r := range s.engine.Routes() {
+		if r.Path != "" {
+			paths.Insert(r.Path)
+		}
+	}
+	return paths.Slice()
+}
 
-	//casbin api
-	//api.POST("/casbin", s.casbinController.Create)
-	//api.POST("/casbin/list", s.casbinController.List)
+type ServerStatus struct {
+	Ping         bool `json:"ping"`
+	DBRepository bool `json:"dbRepository"`
+}
+
+func (s *Server) Ping() *ServerStatus {
+	status := &ServerStatus{Ping: true}
+
+	ctx, cannel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cannel()
+
+	if err := s.repository.Ping(ctx); err == nil {
+		status.DBRepository = true
+	}
+
+	return status
 }
 
 // @Summary Healthz

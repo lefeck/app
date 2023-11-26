@@ -41,13 +41,11 @@ func (t *tagService) List() ([]model.Tag, error) {
 	return t.tagRepository.List()
 }
 
-//func (t *tagService) Update(tag *model.Tag, id string) (*model.Tag, error) {
-//	tid, err := strconv.Atoi(id)
-//	if err != nil {
-//		return nil, err
-//	}
-//
-//	tag.ID = uint(tid)
-//
-//	return t.tagRepository
-//}
+func (t *tagService) Update(tag *model.Tag, id string) (*model.Tag, error) {
+	tid, err := strconv.Atoi(id)
+	if err != nil {
+		return nil, err
+	}
+	tag.ID = uint(tid)
+	return t.tagRepository.Update(tag)
+}

@@ -134,8 +134,6 @@ func (u *userService) Export(data *[]model.User, headerName []string, filename s
 		file.SetCellValue(sheetName, "D"+strconv.Itoa(k), v.Email)
 		file.SetCellValue(sheetName, "E"+strconv.Itoa(k), v.RePassword)
 		file.SetCellValue(sheetName, "F"+strconv.Itoa(k), v.Avatar)
-		file.SetCellValue(sheetName, "G"+strconv.Itoa(k), v.AuthType)
-		file.SetCellValue(sheetName, "H"+strconv.Itoa(k), v.AuthId)
 	}
 	c.Header("Content-Type", "application/octet-stream")
 	c.Header("Content-Disposition", "attachment; filename="+filename)
