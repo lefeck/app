@@ -4,41 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;model/article.go&#10;#&#9;model/category.go&#10;#&#9;model/comment.go&#10;#&#9;model/like.go&#10;#&#9;repository/article.go&#10;#&#9;repository/interface.go&#10;#&#9;service/interface.go&#10;#&#9;service/post.go&#10;#&#9;test/db/onetomany.go">
-      <change afterPath="$PROJECT_DIR$/controller/article.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/comment.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/like.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/tag.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forms/category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forms/tag.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/middleware/authorization.go" afterDir="false" />
+    <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authorization/authorization.go" beforeDir="false" afterPath="$PROJECT_DIR$/authorization/authorization.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/context.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/context.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/rbac.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/oauth/github.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/oauth/provider.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/oauth/wechat.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/post.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/casbin.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/forms/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/authentication.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/casbin.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/authentication.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/authorization.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/middleware/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/cors.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/article.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userinfo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/casbin.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/casbin.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/rbac.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/casbin.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/service/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/tag.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/rbac.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,27 +40,17 @@
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="johnny &lt;jw6759792@gmail.com&gt;" />
-      </list>
-    </option>
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
   }
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="ed0ba3b1-605b-4339-afee-54477e88338a" />
+        <option name="accountId" value="9716bc94-79ad-4cc2-a1bb-f95b07bb098e" />
         <option name="url" value="https://github.com/lefeck/app.git" />
       </UrlAndAccount>
     </option>
@@ -83,74 +58,42 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/authorization/authorization.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/common/response.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/controller/auth.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/controller/casbin.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/controller/upload.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/controller/user.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/middleware/auth.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/middleware/casbin.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/article.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/casbin.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/category.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/post.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/rbac.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/user.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/repository/user.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/server/server.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/service/user.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/test.log" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/test/dhcp/main.go" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
   <component name="ProjectId" id="29sGYPfWpYQGTcIlrEr4p92HyRV" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/Users/johnny/go/src/app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Johnny/go/src/app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test/db" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/test/html" />
       <recent name="$PROJECT_DIR$/utils/set" />
       <recent name="$PROJECT_DIR$/middleware" />
       <recent name="$PROJECT_DIR$/xlsx" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build main.go (1)">
+  <component name="RunManager" selected="Go 构建.go build main.go">
     <configuration name="go build app/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <working_directory value="$PROJECT_DIR$" />
@@ -198,9 +141,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 构建.go build main.go (1)" />
         <item itemvalue="Go 构建.go build app/test" />
-        <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 构建.go build upload.go" />
         <item itemvalue="Go 构建.go build demo3.go" />
       </list>
@@ -210,36 +153,11 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="变更" />
-    <MESSAGE value="v1" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;model/article.go&#10;#&#9;model/category.go&#10;#&#9;model/comment.go&#10;#&#9;model/like.go&#10;#&#9;repository/article.go&#10;#&#9;repository/interface.go&#10;#&#9;service/interface.go&#10;#&#9;service/post.go&#10;#&#9;test/db/onetomany.go" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;model/article.go&#10;#&#9;model/category.go&#10;#&#9;model/comment.go&#10;#&#9;model/like.go&#10;#&#9;repository/article.go&#10;#&#9;repository/interface.go&#10;#&#9;service/interface.go&#10;#&#9;service/post.go&#10;#&#9;test/db/onetomany.go" />
+    <MESSAGE value="v1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/test/demo3.go</url>
-          <line>10</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

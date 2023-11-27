@@ -8,7 +8,6 @@ require (
 	github.com/casbin/gorm-adapter v1.0.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/docker/docker v20.10.24+incompatible
-	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/locales v0.14.1
 	github.com/go-playground/universal-translator v0.18.1
@@ -16,6 +15,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gogo/protobuf v1.3.2
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/juju/ratelimit v1.0.1
 	github.com/natefinch/lumberjack v2.0.0+incompatible
@@ -31,7 +31,6 @@ require (
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.14.0
 	golang.org/x/net v0.16.0
-	golang.org/x/oauth2 v0.2.0
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.3.4
 	gorm.io/gorm v1.23.6
@@ -58,7 +57,7 @@ require (
 	github.com/go-openapi/swag v0.21.1 // indirect
 	github.com/gocarina/structs v0.0.0-20140918155756-eba5a0f1cc3d // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
@@ -93,7 +92,6 @@ require (
 	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/time v0.2.0 // indirect
 	golang.org/x/tools v0.7.0 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

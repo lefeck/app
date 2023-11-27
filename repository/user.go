@@ -36,11 +36,11 @@ func (u *userRepository) GetUserByID(id uint) (*model.User, error) {
 }
 
 func (u *userRepository) GetUserByAuthID(authType, authID string) (*model.User, error) {
-	authInfo := new(model.AuthInfo)
+	authInfo := new(model.UserInfo)
 	if err := u.db.Where("auth_type = ? and auth_id = ?", authType, authID).First(&authInfo).Error; err != nil {
 		return nil, err
 	}
-	return u.GetUserByID(authInfo.UserId)
+	return u.GetUserByID(authInfo.UserID)
 }
 
 func (u *userRepository) GetUserByName(name string) (*model.User, error) {
@@ -65,8 +65,6 @@ func (u *userRepository) List(pageSize int, pageNum int) (int, []interface{}) {
 			"name":     user.Name,
 			"password": user.Password,
 			"email   ": user.Email,
-			"authType": user.AuthType,
-			"authId  ": user.AuthId,
 			"avatar  ": user.Avatar,
 		}
 		userList = append(userList, userItemMap)

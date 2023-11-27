@@ -25,8 +25,6 @@ func (u *CreateUserForm) GetUser() *model.User {
 		Name:     u.Name,
 		Password: u.Password,
 		Email:    u.Email,
-		AuthType: u.AuthType,
-		AuthId:   u.AuthId,
 		Avatar:   u.Avatar,
 	}
 }

@@ -18,7 +18,6 @@ import (
 type AuthController struct {
 	userService service.UserService
 	jwtService  *authentication.JWTService
-	oauthManger *oauth.OAuthManager
 }
 
 func NewAuthController(userService service.UserService, jwtService *authentication.JWTService) *AuthController {
@@ -37,7 +36,7 @@ func (auth *AuthController) Login(c *gin.Context) {
 	if user, err := auth.userService.Login(loginUser); err != nil {
 		common.ResponseFailed(c, http.StatusUnauthorized, err)
 	} else {
-		tokenString, err := auth.jwtService.GenerateToken(user)
+		tokenString, err := auth.jwtService.CreateToken(user)
 		if err != nil {
 			common.ResponseFailed(c, http.StatusInternalServerError, errors.New("生成token失败"))
 			return
