@@ -4,6 +4,7 @@ import (
 	"app/database"
 	"app/global"
 	"app/model"
+	"errors"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 	"strconv"
@@ -51,6 +52,18 @@ func (u *userRepository) GetUserByName(name string) (*model.User, error) {
 	return &user, nil
 }
 
+func (u *userRepository) GetUserByMobile(number string) (*model.User, error) {
+	var user model.User
+
+	var result = global.DB.Where("mobile = ?", number).Select("id").First(user)
+	if result.RowsAffected != 0 {
+		err := errors.New("手机号已存在")
+		return nil, err
+	}
+
+	return &user, nil
+}
+
 func (u *userRepository) List(pageSize int, pageNum int) (int, []interface{}) {
 	var users []model.User
 	userList := make([]interface{}, 0, len(users))
@@ -74,7 +87,7 @@ func (u *userRepository) List(pageSize int, pageNum int) (int, []interface{}) {
 }
 
 func (u *userRepository) Create(user *model.User) (*model.User, error) {
-	userCreateField := []string{"name", "email", "password", "auth_id", "auth_type", "avatar"}
+	userCreateField := []string{"name", "email", "password", "repassword", "mobile", "avatar"}
 	if err := global.DB.Select(userCreateField).Create(user).Error; err != nil {
 		return nil, err
 	}

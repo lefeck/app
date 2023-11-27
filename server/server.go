@@ -1,7 +1,6 @@
 package server
 
 import (
-	"app/authentication"
 	"app/common"
 	"app/config"
 	"app/controller"
@@ -80,7 +79,7 @@ func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 	userService := service.NewUserService(repository.User())
 	userController := controller.NewUserController(userService)
 
-	jwtService := authentication.NewJWTService(conf.Server.JWTSecret)
+	jwtService := middleware.NewJWT(conf.Server.JWTSecret)
 	authContoller := controller.NewAuthController(userService, jwtService)
 
 	transContoller := controller.NewTransController()
@@ -125,8 +124,7 @@ func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 		middleware.CORSMiddleware(),
 		middleware.LoggerMiddleWare(),
 		middleware.Recovery(),
-		middleware.AuthenticationMiddleware(jwtService, repository.User()),
-		middleware.AuthorizationMiddleware(),
+		middleware.AuthorizationMiddleware(jwtService),
 	)
 
 	//e.LoadHTMLFiles("")

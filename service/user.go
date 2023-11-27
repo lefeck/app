@@ -4,6 +4,8 @@ import (
 	"app/common/request"
 	"app/model"
 	"app/repository"
+	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/xuri/excelize/v2"
 	"golang.org/x/crypto/bcrypt"
@@ -52,9 +54,21 @@ func (u *userService) Get(id string) (*model.User, error) {
 	return u.userRepository.GetUserByID(uint(uid))
 }
 
-func (u *userService) CreateOAuthUser(user *model.User) (*model.User, error) {
-	//TODO implement me
-	panic("implement me")
+const (
+	MinPasswordLength = 6
+)
+
+func (u *userService) Validate(user *model.User) error {
+	if user == nil {
+		return errors.New("user is empty")
+	}
+	if user.Name == "" {
+		return errors.New("user name is empty")
+	}
+	if len(user.Password) < MinPasswordLength {
+		return fmt.Errorf("password length must great than %d", MinPasswordLength)
+	}
+	return nil
 }
 
 func (u *userService) Update(user *model.User) (*model.User, error) {
@@ -80,15 +94,10 @@ func (u *userService) FindAll(userlist []model.User) ([]model.User, error) {
 	return u.userRepository.FindAll(userlist)
 }
 
-func (u *userService) Validate(user *model.User) error {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (u *userService) Login(param request.Login) (*model.User, error) {
-	//if user == nil || param.Name == "" || param.Password == "" {
-	//	return nil, fmt.Errorf("name or password is empty")
-	//}
+	if u == nil || param.Name == "" || param.Password == "" {
+		return nil, fmt.Errorf("name or password is empty")
+	}
 
 	user, err := u.userRepository.GetUserByName(param.Name)
 	if err != nil {
@@ -103,16 +112,20 @@ func (u *userService) Login(param request.Login) (*model.User, error) {
 }
 
 // Register 注册
-//func (userService *UserService) Register(params request.Register) (err error, user *model.User) {
-//	var result = global.App.DB.Where("mobile = ?", params.Mobile).Select("id").First(&models.User{})
-//	if result.RowsAffected != 0 {
-//		err = errors.New("手机号已存在")
-//		return
-//	}
-//	user = &model.User{Name: params.Name, Mobile: params.Mobile, Password: utils.BcryptMake([]byte(params.Password))}
-//	err = global.App.DB.Create(&user).Error
-//	return
-//}
+func (u *userService) Register(params request.Register) (user *model.User, err error) {
+
+	if params.Password != params.RePassword {
+		return nil, fmt.Errorf("Password do not match")
+	}
+
+	users := &model.User{Name: params.Name, Mobile: params.Mobile, Password: params.Password, RePassword: params.RePassword, Email: params.Email}
+	user, err = u.userRepository.Create(users)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
 
 func (u *userService) Export(data *[]model.User, headerName []string, filename string, c *gin.Context) error {
 	sheetName := "Sheet1"

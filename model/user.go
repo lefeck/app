@@ -6,12 +6,6 @@ import (
 	"time"
 )
 
-const (
-	UserAssociation         = "Users"
-	UserAuthInfoAssociation = "AuthInfos"
-	GroupAssociation        = "Groups"
-)
-
 type BaseModel struct {
 	CreatedAt time.Time      `json:"createdAt"`
 	UpdatedAt time.Time      `json:"updatedAt"`
@@ -23,7 +17,8 @@ type User struct {
 	Name       string   `json:"name" gorm:"type:varchar(50);uniqueIndex:name_auth_type;not null"`
 	Password   string   `json:"-" gorm:"type:varchar(256);"`
 	RePassword string   `json:"-" gorm:"type:varchar(256);"`
-	Email      string   `json:"email" gorm:"type:varchar(256);"`
+	Mobile     string   `gorm:"index:idx_mobile;unique;type:varchar(11);not null"`
+	Email      string   `json:"email" gorm:"type:varchar(50);"`
 	Avatar     string   `json:"avatar" gorm:"type:varchar(256);"` // 头像
 	UserInfo   UserInfo `json:"authInfo" gorm:"foreignKey:UserID;references:ID"`
 	BaseModel

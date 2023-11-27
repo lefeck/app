@@ -16,8 +16,10 @@ func NewArticleRepository(db *gorm.DB) ArticleRepository {
 	}
 }
 
+// 通过id获取文章
 func (a *articleRepository) GetArticleByID(id uint) (*model.Article, error) {
 	article := new(model.Article)
+	//文章关联了,creator, tag, category, comments, comment.user(评论的用户)
 	if err := a.db.Preload(model.CreatorAssociation).Preload(model.TagsAssociation).Preload(model.CategoriesAssociation).Preload("Comments.User").Preload(model.CommentsAssociation).Find(article).Error; err != nil {
 		return nil, err
 	}
@@ -29,6 +31,7 @@ func (a *articleRepository) GetArticleByID(id uint) (*model.Article, error) {
 	return article, nil
 }
 
+// 统计文章的点赞数
 func (a *articleRepository) CountLike(id uint) (int64, error) {
 	var count int64
 	if err := a.db.Model(&model.Like{}).Where("article_id = ?", id).Count(&count).Error; err != nil {
@@ -37,6 +40,7 @@ func (a *articleRepository) CountLike(id uint) (int64, error) {
 	return count, nil
 }
 
+// 通过名字获取文章
 func (a *articleRepository) GetArticleByName(name string) (*model.Article, error) {
 	article := new(model.Article)
 	if err := a.db.Where("name = ?", name).First(article).Error; err != nil {
@@ -45,13 +49,14 @@ func (a *articleRepository) GetArticleByName(name string) (*model.Article, error
 	return article, nil
 }
 
+// 获取所有的文章
 func (a *articleRepository) List() ([]model.Article, error) {
 	articles := make([]model.Article, 0)
-	//omit 在create，update和query 忽略哪些字段
+	//db.Omit 在create，update和query 忽略哪些字段
 	/*
 		order 从数据库检索记录时指定顺序
 		db.Order(clause.OrderByColumn{Column: clause.Column{Name: "created_at"}, Desc: true})
-		// 表示安装创建时间顺序来查找
+		// 表示按照创建时间顺序来获取输出
 	*/
 
 	if err := a.db.Omit("content").Preload(model.CreatorAssociation).Preload(model.TagsAssociation).Preload(model.CategoriesAssociation).
@@ -85,6 +90,7 @@ func (a *articleRepository) List() ([]model.Article, error) {
 	return articles, nil
 }
 
+// 创建文章
 func (a *articleRepository) Create(user *model.User, article *model.Article) (*model.Article, error) {
 	article.CreatorID = user.ID
 	article.Creator = *user
@@ -92,21 +98,25 @@ func (a *articleRepository) Create(user *model.User, article *model.Article) (*m
 	return article, err
 }
 
+// 更新文章
 func (a *articleRepository) Update(article *model.Article) (*model.Article, error) {
 	err := a.db.Model(article).Omit("views", "creator_id").Updates(article).Error
 	return article, err
 }
 
+// 删除文章
 func (a *articleRepository) Delete(id uint) error {
 	article := &model.Article{}
 	return a.db.Delete(article, id).Error
 }
 
+// 文章阅读数
 func (a articleRepository) IncView(id uint) error {
 	article := &model.Article{ID: id}
 	return a.db.Model(article).UpdateColumn("views", gorm.Expr("views + 1")).Error
 }
 
+// 自动创建表结构到db
 func (a *articleRepository) Migrate() error {
 	return a.db.AutoMigrate(&model.Category{}, &model.Category{}, &model.Comment{}, &model.Like{}, &model.Tag{})
 }

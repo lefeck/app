@@ -46,15 +46,18 @@ func (p *CommentController) Delete(c *gin.Context) {
 	common.ResponseSuccess(c, nil)
 }
 
-func (p *CommentController) List() {
-
-}
+//
+//func (c *CommentController) List() {
+//
+//}
 
 func (c *CommentController) Name() string {
 	return "comment"
 }
 
-func (c *CommentController) RegisterRoute(group *gin.RouterGroup) {
-	//TODO implement me
-	panic("implement me")
+func (c *CommentController) RegisterRoute(api *gin.RouterGroup) {
+	//api.GET("/comments", c.List)
+	//api.GET("/tag/:id", t.Get)
+	api.POST("/comment", c.Add)
+	api.DELETE("/comment/:id", c.Delete)
 }

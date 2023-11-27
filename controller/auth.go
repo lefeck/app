@@ -1,14 +1,12 @@
 package controller
 
 import (
-	"app/authentication"
-	"app/authentication/oauth"
 	"app/common"
 	"app/common/request"
 	"app/forms"
+	"app/middleware"
 	"app/service"
 	"errors"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"
@@ -17,10 +15,10 @@ import (
 
 type AuthController struct {
 	userService service.UserService
-	jwtService  *authentication.JWTService
+	jwtService  *middleware.JWT
 }
 
-func NewAuthController(userService service.UserService, jwtService *authentication.JWTService) *AuthController {
+func NewAuthController(userService service.UserService, jwtService *middleware.JWT) *AuthController {
 	return &AuthController{
 		userService: userService,
 		jwtService:  jwtService,
@@ -78,16 +76,16 @@ func (auth *AuthController) Register(c *gin.Context) {
 	c.JSON(http.StatusOK, user)
 }
 
-func (auth *AuthController) Logout(c *gin.Context) {
-	if err := auth.jwtService.JoinBlackList(c.Keys["token"].(*jwt.Token)); err != nil {
-		c.JSON(http.StatusForbidden, "login out failed")
-		return
-	}
-	common.ResponseSuccess(c, nil)
-}
+//	func (auth *AuthController) Logout(c *gin.Context) {
+//		if err := auth.jwtService.JoinBlackList(c.Keys["token"].(*jwt.Token)); err != nil {
+//			c.JSON(http.StatusForbidden, "login out failed")
+//			return
+//		}
+//		common.ResponseSuccess(c, nil)
+//	}
 func (auth *AuthController) RegisterRoute(api *gin.RouterGroup) {
 	api.POST("/auth/token", auth.Login)
-	api.DELETE("/auth/token", auth.Logout)
+	//api.DELETE("/auth/token", auth.Logout)
 	api.POST("/auth/user", auth.Register)
 }
 

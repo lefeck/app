@@ -3,7 +3,6 @@ package repository
 import (
 	"app/model"
 	"context"
-	"gorm.io/gorm/clause"
 )
 
 // 工厂模式接口
@@ -29,7 +28,7 @@ type Migrant interface {
 // user实现的接口
 type UserRepository interface {
 	GetUserByID(uint) (*model.User, error)
-	GetUserByAuthID(authType, authID string) (*model.User, error)
+	//GetUserByAuthID(authType, authID string) (*model.User, error)
 	GetUserByName(string) (*model.User, error)
 	//List() ([]model.User, error)
 	List(pageSize int, pageNum int) (int, []interface{})
@@ -49,21 +48,6 @@ type ArticleRepository interface {
 	Update(*model.Article) (*model.Article, error)
 	Delete(uint) error
 	IncView(id uint) error
-	Migrate() error
-}
-
-type RBACRepository interface {
-	List() ([]model.Role, error)
-	ListResources() ([]model.Resource, error)
-	Create(role *model.Role) (*model.Role, error)
-	CreateResource(resource *model.Resource) (*model.Resource, error)
-	CreateResources(resources []model.Resource, conds ...clause.Expression) error
-	GetRoleByID(id int) (*model.Role, error)
-	GetResource(id int) (*model.Resource, error)
-	GetRoleByName(name string) (*model.Role, error)
-	Update(role *model.Role) (*model.Role, error)
-	Delete(id uint) error
-	DeleteResource(id uint) error
 	Migrate() error
 }
 
