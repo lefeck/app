@@ -6,3 +6,7 @@ type Tag struct {
 	Name     string    `json:"name" gorm:"size:256;not null;unique"`
 	Articles []Article `json:"articles" gorm:"many2many:tag_articles"`
 }
+
+func (*Tag) TableName() string {
+	return "tag"
+}

@@ -25,7 +25,7 @@ type User struct {
 }
 
 func (*User) TableName() string {
-	return "users"
+	return "user"
 }
 
 func (u *User) CacheKey() string {

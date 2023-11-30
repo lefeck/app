@@ -61,10 +61,11 @@ func (auth *AuthController) Register(c *gin.Context) {
 			})
 			return
 		}
+		errs.Error()
 		// validator.ValidationErrors类型错误则进行翻译
-		c.JSON(http.StatusOK, gin.H{
-			"msg": common.RemoveTopStruct(errs.Translate(trans)),
-		})
+		//c.JSON(http.StatusOK, gin.H{
+		//	"msg": common.RemoveTopStruct(errs.Translate(trans)),
+		//})
 		return
 	}
 	user, err := auth.userService.Create(registerUser.GetUser())

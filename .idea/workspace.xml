@@ -4,7 +4,40 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;model/article.go&#10;#&#9;model/category.go&#10;#&#9;model/comment.go&#10;#&#9;model/like.go&#10;#&#9;repository/article.go&#10;#&#9;repository/interface.go&#10;#&#9;service/interface.go&#10;#&#9;service/post.go&#10;#&#9;test/db/onetomany.go" />
+    <list default="true" id="e02e3ce0-35d9-4c72-bb42-ecacaf0a78c7" name="变更" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;model/article.go&#10;#&#9;model/category.go&#10;#&#9;model/comment.go&#10;#&#9;model/like.go&#10;#&#9;repository/article.go&#10;#&#9;repository/interface.go&#10;#&#9;service/interface.go&#10;#&#9;service/post.go&#10;#&#9;test/db/onetomany.go">
+      <change afterPath="$PROJECT_DIR$/model/db/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/like.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/like.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/trans.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/trans.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/forms/tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/global/global.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/like.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/like.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/userinfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userinfo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/like.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/like.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/test.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +67,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="ed0ba3b1-605b-4339-afee-54477e88338a" />
+        <option name="accountId" value="9716bc94-79ad-4cc2-a1bb-f95b07bb098e" />
         <option name="url" value="https://github.com/lefeck/app.git" />
       </UrlAndAccount>
     </option>
@@ -43,20 +76,13 @@
     <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/authorization/authorization.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/common/response.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/controller/auth.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/controller/casbin.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/controller/upload.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/controller/user.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/middleware/auth.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/middleware/casbin.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/model/article.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/casbin.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/model/category.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/post.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/model/rbac.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/model/user.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/repository/user.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/server/server.go" root0="FORCE_HIGHLIGHTING" />
@@ -92,12 +118,14 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
     "WebServerToolWindowFactoryState": "false",
+    "configurable..is.expanded": "false",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "last_opened_file_path": "/Users/johnny/go/src/app",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.goide.configuration.GoLibrariesConfigurableProvider"
+    "settings.editor.selected.configurable": "go.vgo"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -197,6 +225,11 @@
           <url>file://$PROJECT_DIR$/test/demo3.go</url>
           <line>10</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/server/server.go</url>
+          <line>58</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

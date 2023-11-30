@@ -41,3 +41,8 @@ func (t *tagRepository) Update(tag *model.Tag) (*model.Tag, error) {
 	}
 	return tag, nil
 }
+
+// 自动创建表结构到db
+func (a *tagRepository) Migrate() error {
+	return a.db.AutoMigrate(&model.Tag{})
+}

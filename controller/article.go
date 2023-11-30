@@ -89,7 +89,7 @@ func (p *ArtcileController) Update(c *gin.Context) {
 }
 
 func (a *ArtcileController) Name() string {
-	return "artcile"
+	return "artciles"
 }
 
 func (a *ArtcileController) RegisterRoute(api *gin.RouterGroup) {

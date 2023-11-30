@@ -60,7 +60,7 @@ func (t *TagController) Update(c *gin.Context) {
 }
 
 func (t *TagController) Name() string {
-	return "tag"
+	return "tags"
 }
 
 func (t *TagController) RegisterRoute(api *gin.RouterGroup) {

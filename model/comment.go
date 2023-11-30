@@ -18,3 +18,7 @@ type Comment struct {
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 }
+
+func (*Comment) TableName() string {
+	return "comment"
+}

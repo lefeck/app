@@ -52,7 +52,7 @@ func (p *CommentController) Delete(c *gin.Context) {
 //}
 
 func (c *CommentController) Name() string {
-	return "comment"
+	return "comments"
 }
 
 func (c *CommentController) RegisterRoute(api *gin.RouterGroup) {

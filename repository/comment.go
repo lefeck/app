@@ -33,3 +33,8 @@ func (c *commentRepository) List(aid string) ([]model.Comment, error) {
 	err := c.db.Where("article_id = ?", aid).Find(comments).Error
 	return comments, err
 }
+
+// 自动创建表结构到db
+func (a *commentRepository) Migrate() error {
+	return a.db.AutoMigrate(&model.Comment{})
+}

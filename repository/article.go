@@ -118,5 +118,5 @@ func (a articleRepository) IncView(id uint) error {
 
 // 自动创建表结构到db
 func (a *articleRepository) Migrate() error {
-	return a.db.AutoMigrate(&model.Category{}, &model.Category{}, &model.Comment{}, &model.Like{}, &model.Tag{})
+	return a.db.AutoMigrate(&model.Article{})
 }

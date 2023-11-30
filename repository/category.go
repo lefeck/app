@@ -47,7 +47,13 @@ func (c *categoryRepository) Update(category *model.Category) (*model.Category, 
 	return category, nil
 }
 
-func (c *categoryRepository) List() ([]model.Category, error) {
-	//TODO implement me
-	panic("implement me")
+//
+//func (c *categoryRepository) List() ([]model.Category, error) {
+//	//TODO implement me
+//	panic("implement me")
+//}
+
+// 自动创建表结构到db
+func (a *categoryRepository) Migrate() error {
+	return a.db.AutoMigrate(&model.Category{})
 }

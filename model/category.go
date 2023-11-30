@@ -8,3 +8,7 @@ type Category struct {
 	Image    string    `json:"image" gorm:"type:varchar(200)"`
 	Articles []Article `json:"articles" gorm:"many2many:category_articles"`
 }
+
+func (*Category) TableName() string {
+	return "category"
+}

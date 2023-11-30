@@ -39,3 +39,8 @@ func (l *likeRepository) GetLikeByUser(uid uint) ([]model.Like, error) {
 	err := l.db.Model(&model.Like{}).Where("user_id = ?", uid).Find(&likes).Error
 	return likes, err
 }
+
+// 自动创建表结构到db
+func (a *likeRepository) Migrate() error {
+	return a.db.AutoMigrate(&model.Like{})
+}

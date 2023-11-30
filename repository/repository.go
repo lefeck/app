@@ -13,8 +13,6 @@ type repository struct {
 	comment  CommentRepository
 	tag      TagRepository
 	like     LikeRepository
-	//group    GroupRepository
-	//rbac     RBACRepository
 	db       *gorm.DB
 	rdb      *database.RedisDB
 	migrants []Migranter
@@ -31,13 +29,19 @@ func NewRepository(db *gorm.DB, rdb *database.RedisDB) Repository {
 		db:       db,
 		rdb:      rdb,
 	}
-	r.migrants = getMigrants(r.user, r.article, r.article, r.like, r.category, r.tag)
+	r.migrants = getMigrants(
+		r.user,
+		r.article,
+		r.article,
+		r.like,
+		r.category,
+		r.tag)
 	return r
 }
 
-func getMigrants(obj ...interface{}) []Migranter {
+func getMigrants(objs ...interface{}) []Migranter {
 	var migrants []Migranter
-	for _, obj := range migrants {
+	for _, obj := range objs {
 		if m, ok := obj.(Migranter); ok {
 			migrants = append(migrants, m)
 		}
@@ -116,9 +120,4 @@ func (r *repository) Ping(ctx context.Context) error {
 		}
 	}
 	return nil
-}
-
-func (r *repository) Init() error {
-	//TODO implement me
-	panic("implement me")
 }

@@ -45,3 +45,7 @@ type Article struct {
 	Origin    int  `json:"origin" gorm:"not null"` //是否原创 1原创 0转载
 	State     int  `json:"-" gorm:"default:0"`     //0正常发布 2并未发布(草稿箱)
 }
+
+func (*Article) TableName() string {
+	return "article"
+}

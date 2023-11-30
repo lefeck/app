@@ -15,10 +15,7 @@ type Repository interface {
 	Like() LikeRepository
 	Close() error
 	Ping(ctx context.Context) error
-	//Init() error
 	Migrant
-	//Group() GroupRepository
-	//RBAC() RBACRepository
 }
 
 type Migrant interface {
@@ -28,7 +25,6 @@ type Migrant interface {
 // user实现的接口
 type UserRepository interface {
 	GetUserByID(uint) (*model.User, error)
-	//GetUserByAuthID(authType, authID string) (*model.User, error)
 	GetUserByName(string) (*model.User, error)
 	//List() ([]model.User, error)
 	List(pageSize int, pageNum int) (int, []interface{})
@@ -56,6 +52,7 @@ type CategoryRepository interface {
 	Delete(cid uint) error
 	Create(category *model.Category) (*model.Category, error)
 	Update(category *model.Category) (*model.Category, error)
+	Migrate() error
 }
 
 type TagRepository interface {
@@ -64,12 +61,14 @@ type TagRepository interface {
 	Delete(id uint) error
 	List() ([]model.Tag, error)
 	Update(tag *model.Tag) (*model.Tag, error)
+	Migrate() error
 }
 
 type CommentRepository interface {
 	Add(comment *model.Comment) (*model.Comment, error)
 	Delete(id string) error
 	List(aid string) ([]model.Comment, error)
+	Migrate() error
 }
 
 type LikeRepository interface {
@@ -77,4 +76,5 @@ type LikeRepository interface {
 	Delete(aid, uid uint) error
 	Get(aid, uid uint) (bool, error)
 	GetLikeByUser(uid uint) ([]model.Like, error)
+	Migrate() error
 }

@@ -19,7 +19,7 @@ func NewLikeController(likeService service.LikeService) Controller {
 }
 
 func (l *LikeController) Name() string {
-	return "like"
+	return "likes"
 }
 
 func (l *LikeController) RegisterRoute(api *gin.RouterGroup) {

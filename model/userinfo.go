@@ -10,3 +10,7 @@ type UserInfo struct {
 	Expiry       time.Time `json:"-"`
 	BaseModel
 }
+
+func (*UserInfo) TableName() string {
+	return "user_info"
+}

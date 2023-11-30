@@ -20,6 +20,7 @@ db:
   name: "testuser"
   user: "root"
   password: "123456"
+  migrate: true
 
 redis:
   enable: true

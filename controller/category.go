@@ -66,7 +66,7 @@ func (ca *CategoryController) Update(c *gin.Context) {
 }
 
 func (ca *CategoryController) Name() string {
-	return "category"
+	return "categories"
 }
 
 func (ca *CategoryController) RegisterRoute(api *gin.RouterGroup) {

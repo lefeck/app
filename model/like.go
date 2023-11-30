@@ -8,3 +8,7 @@ type Like struct {
 	ArticleID uint    `json:"ArticleId" gorm:"uniqueIndex:user_article"`
 	Article   Article `json:"-" gorm:"foreignKey:ArticleID"`
 }
+
+func (*Like) TableName() string {
+	return "like"
+}

@@ -13,6 +13,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
 	"github.com/gogo/protobuf/version"
 	"github.com/sirupsen/logrus"
 	"log"
@@ -29,18 +30,11 @@ import (
 const Language = "zh"
 
 type Server struct {
-	engine *gin.Engine
-	config *config.Config
-	//redis          *redis.Client
-	logger *logrus.Logger
-
-	//authContoller  *controller.AuthController
-	//authMiddleware gin.HandlerFunc
-
-	//loggerMiddleware   gin.HandlerFunc
-	//recoveryMiddleware gin.HandlerFunc
-	repository repository.Repository
-
+	engine      *gin.Engine
+	config      *config.Config
+	redis       *redis.Client
+	logger      *logrus.Logger
+	repository  repository.Repository
 	controllers []controller.Controller
 }
 
@@ -79,11 +73,11 @@ func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 	userService := service.NewUserService(repository.User())
 	userController := controller.NewUserController(userService)
 
-	jwtService := middleware.NewJWT(conf.Server.JWTSecret)
-	authContoller := controller.NewAuthController(userService, jwtService)
+	//jwtService := middleware.NewJWT(conf.Server.JWTSecret)
+	//authContoller := controller.NewAuthController(userService, jwtService)
 
-	transContoller := controller.NewTransController()
-	transContoller.Trans(Language)
+	//transContoller := controller.NewTransController()
+	//transContoller.Trans(Language)
 
 	// upload file
 	//uploadService := service.NewUploadService(&conf.Storage)
@@ -109,7 +103,7 @@ func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 	likeService := service.NewLikeService(repository.Like())
 	likeController := controller.NewLikeController(likeService)
 
-	controllers := []controller.Controller{authContoller, userController, articleController, categoryController, tagController, commentController, likeController}
+	controllers := []controller.Controller{userController, articleController, categoryController, tagController, commentController, likeController}
 
 	//logger
 	logs := service.NewLoggerService(&conf.Logger)
@@ -124,7 +118,7 @@ func New(conf *config.Config, logger *logrus.Logger) (*Server, error) {
 		middleware.CORSMiddleware(),
 		middleware.LoggerMiddleWare(),
 		middleware.Recovery(),
-		middleware.AuthorizationMiddleware(jwtService),
+		//middleware.AuthorizationMiddleware(jwtService),
 	)
 
 	//e.LoadHTMLFiles("")
@@ -162,14 +156,14 @@ func (s *Server) Run() error {
 	defer cancel()
 
 	ch := <-sig
-	s.logger.Infof("Receive signal: %s", ch)
+	s.logger.Info("Receive signal: %s", ch)
 
 	return server.Shutdown(ctx)
 }
 
 func (s *Server) Close() {
 	if err := s.repository.Close(); err != nil {
-		s.logger.Warnf("failed to close repository, %v", err)
+		s.logger.Warn("failed to close repository, %v", err)
 	}
 }
 
