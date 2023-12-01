@@ -2,7 +2,6 @@ package repository
 
 import (
 	"app/model"
-	"errors"
 	"gorm.io/gorm"
 )
 
@@ -38,9 +37,9 @@ func (c *categoryRepository) Delete(cid uint) error {
 }
 
 func (c *categoryRepository) Update(category *model.Category) (*model.Category, error) {
-	if result := c.db.First(category); result.RowsAffected == 0 {
-		return nil, errors.New("category is not exist")
-	}
+	//if result := c.db.First(category); result.RowsAffected == 0 {
+	//	return nil, errors.New("category is not exist")
+	//}
 	if err := c.db.Updates(&category).Error; err != nil {
 		return nil, err
 	}

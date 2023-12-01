@@ -27,7 +27,7 @@ const (
 
 type Article struct {
 	BaseModel
-	ID         uint       `json:"aid" gorm:"autoIncrement;primaryKey"`
+	ID         uint       `json:"id" gorm:"autoIncrement;primaryKey"`
 	Title      string     `json:"title" gorm:"type:varchar(100);not null;unique"`
 	Content    string     `json:"content" gorm:"type:text;not null"`
 	Cover      string     `json:"cover" gorm:"not null"`

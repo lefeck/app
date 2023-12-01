@@ -21,7 +21,11 @@ func NewUserController(userSerivce service.UserService) *UserController {
 }
 
 func (u *UserController) List(c *gin.Context) {
-	userListForm := forms.UserListForm{}
+	pn := c.DefaultQuery("pagenum", "0")
+	pnInt, _ := strconv.Atoi(pn)
+	pSize := c.DefaultQuery("pagesize", "10")
+	pSizeInt, _ := strconv.Atoi(pSize)
+	userListForm := forms.UserListForm{PageNum: pnInt, PageSize: pSizeInt}
 	if err := c.ShouldBind(&userListForm); err != nil {
 		c.JSON(http.StatusBadRequest, err)
 		return
